@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Scraping With Mongoose</title>
+    <style>
+      body { 
+          background-color: #F2F6D0;
+      }
+      #wrapper {
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5%;
+      }
+      #articles {
+        display: inline-block;
+        overflow: auto;
+        width: 60%;
+        height: 700px;
+      }
+      #notes {
+        float: right;
+        width: 30%;
+      }
+      textarea, input {
+        margin: 0px 0px 10px 0px;
+        border-radius: 10px;
+        display: block;
+        width: 100%;
+        background-color: rgb(245, 230, 29);
+      }
+      input {
+        height: 36px;
+        font-size: 24px;
+      }
+      textarea {
+        height: 200px;
+        font-size: 18px;
+      }
+      .articleButton {
+        width: 80%;
+        margin: 0px 0px 20px 0px;
+        border-radius: 0px 0px 0px 10px;
+        border: none;
+        background-color: rgb(223, 210, 210);
+      }
+      .noteButton {
+        background-color: darkseagreen;
+        border-radius: 0px 10px 10px 0px;
+        font-size: 10px;
+        margin: 0px 10px 0px -5px;
+      }
+      #savenote {
+      background-color: darkseagreen;
+      float: right;
+      margin: 5px;
+      border-radius: 10px;
+      font-size: 1.2em;
+      }
+      em {
+        text-align: left;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>NY Times Scraper & Note Taker</h1>
+      <div id="articles"></div>
+      <div id="notes"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
