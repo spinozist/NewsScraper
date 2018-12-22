@@ -45,7 +45,7 @@ app.get("/scrape", function(req, res) {
       const results = [];
       
       const title = $(element).find("h2").text();
-      const summary = $(element).children().text();
+      const summary = $(element).find("p").text() || $(element).find("li").text();
       const link = $(element).find("a").attr("href");
 
       // Save these results in an object that we'll push into the results array we defined earlier

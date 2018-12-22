@@ -4,26 +4,31 @@ $.getJSON("/articles", function(data) {
   data.forEach (data => {
     // Display the apropos information on the page
     $("#articles").append(
-    `<button class="articleButton">
-        <a href="https://www.nytimes.com${data.link}" target="blank">
-          <h3>${data.title}</h3>
-        </a>
-        <h4>${data.summary}</h4>
-    </button>
-    <button class="noteButton">
-      <p data-id=${data._id}>
-        Add note
-      </p>
-    </button>
-    <br>
+    `<div class="card mb-4">
+        <div class="card-body">
+             <a href="https://www.nytimes.com${data.link}" target="blank">
+            <h3 class="card-title">${data.title}</h3>
+            </a>
+            <p>${data.summary}</p>
+            <button class="noteButton" data-id=${data._id}>Add note</button>
+        </div>
+    </div>
     `
     )
   })
 });
 
+$(document).on("click", "button.scrape", function(){
+    $.ajax({
+        method: "GET",
+        url: "/scrape"
+    }).then(function(){
+        location.reload();
+    });
+})
 
 // Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+$(document).on("click", "button.noteButton", function() {
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag
@@ -38,11 +43,11 @@ $(document).on("click", "p", function() {
     .then(function(data) {
       console.log(data);
       // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
+      $("#notes").append("<h6>Note for:</h6><h5><em>" + data.title + "</em></h5>");
       // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title' >");
+      $("#notes").append("<input id='titleinput' name='title' placeholder='Title' >");
       // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      $("#notes").append("<textarea id='bodyinput' name='body' placeholder='Note'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
