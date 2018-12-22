@@ -5,10 +5,10 @@ $.getJSON("/articles", function(data) {
     // Display the apropos information on the page
     $("#articles").append(
     `<button class="articleButton">
-        <a href="${data.link}" target="blank">
+        <a href="https://www.nytimes.com${data.link}" target="blank">
           <h3>${data.title}</h3>
         </a>
-        <em>${data.summary}</em>
+        <h4>${data.summary}</h4>
     </button>
     <button class="noteButton">
       <p data-id=${data._id}>
