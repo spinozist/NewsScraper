@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+const moment = require("moment");
 
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
@@ -9,7 +10,17 @@ var NoteSchema = new Schema({
   // `title` is of type String
   title: String,
   // `body` is of type String
-  body: String
+  body: String,
+
+  updated: { 
+    type : String, 
+    default: moment().format('MMMM Do YYYY, h:mm:ss a')
+  },
+
+  timestamp: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 // This creates our model from the above schema, using mongoose's model method

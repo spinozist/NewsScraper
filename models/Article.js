@@ -1,11 +1,12 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const moment = require("moment");
 
 // Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
-var ArticleSchema = new Schema({
+const ArticleSchema = new Schema({
   // `title` is required and of type String
   title: {
     type: String,
@@ -28,6 +29,16 @@ var ArticleSchema = new Schema({
   note: {
     type: Schema.Types.ObjectId,
     ref: "Note"
+  },
+
+  created: { 
+    type : String, 
+    default: moment().format('MMMM Do YYYY, h:mm:ss a')
+  },
+
+  timestamp: {
+    type: Date,
+    default: Date.now()
   }
 });
 

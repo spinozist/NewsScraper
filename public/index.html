@@ -3,71 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title>Scraping With Mongoose</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <link rel="stylesheet" 
      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
      crossorigin="anonymous">
-    <!-- <style>
-      body { 
-          background-color: #F2F6D0;
-      }
-      #wrapper {
-        width: 960px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 5%;
-      }
-      #articles {
-        display: inline-block;
-        overflow: auto;
-        width: 70%;
-        height: 700px;
-      }
-      #notes {
-        float: right;
-        width: 30%;
-      }
-      textarea, input {
-        margin: 0px 0px 10px 0px;
-        border-radius: 10px;
-        display: block;
-        width: 100%;
-        background-color: rgb(245, 230, 29);
-      }
-      input {
-        height: 36px;
-        font-size: 24px;
-      }
-      textarea {
-        height: 200px;
-        font-size: 18px;
-      }
-      .articleButton {
-        width: 80%;
-        margin: 0px 0px 20px 0px;
-        border-radius: 0px 0px 0px 10px;
-        border: none;
-        background-color: rgb(223, 210, 210);
-      }
-      .noteButton {
-        background-color: darkseagreen;
-        border-radius: 0px 10px 10px 0px;
-        font-size: 10px;
-        margin: 0px 10px 0px -5px;
-      }
-      #savenote {
-      background-color: darkseagreen;
-      float: right;
-      margin: 5px;
-      border-radius: 10px;
-      font-size: 1.2em;
-      }
-      h4 {
-        text-align: left;
-        margin: 5px;
-      }
-    </style> -->
-  <style>
+   <style>
 
       body {
         background-image: url("./images/abstract-background-black-and-white-935871.jpg");
@@ -75,9 +16,14 @@
         height: 100vh;
       }
 
-      #note-for, #note-article {
+      #note-for, #note-article, #updated {
         background-color: rgb(218, 218, 218);
         padding: 5px;
+      }
+
+      #updated {
+        font-size: 10px;
+        padding: 10px;
       }
 
       .jumbotron {
@@ -85,6 +31,7 @@
         color: whitesmoke;
         text-align: center;
         height: 30vh;
+        margin-top: 2vh;
       }
 
       #articles {
@@ -129,6 +76,11 @@
         width: 100px;
         border: none;
       }
+
+      .editButton {
+        background-color: rgb(228, 112, 97);
+      }
+
       #savenote {
         background-color: rgb(110, 172, 110);
         float: right;
@@ -145,6 +97,7 @@
         font-size: 28px;
         border: none;
       }
+
       .card {
         background-color: rgb(218, 218, 218);
       }

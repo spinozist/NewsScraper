@@ -69,7 +69,7 @@ app.get("/scrape", function(req, res) {
                 });
             } else {
                 console.log("Article is already in the database");
-                console.log(found);
+                // console.log(found);
             }
         })          
     });
@@ -81,7 +81,7 @@ app.get("/scrape", function(req, res) {
 
 // Route for getting all Articles from the db
 app.get("/articles/", function(req, res) {
-  db.Article.find({})
+  db.Article.find({}).sort({timestamp: -1})
   .then(found => {
     res.json(found);
   })
