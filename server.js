@@ -40,31 +40,38 @@ app.get("/scrape", function(req, res) {
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-     $("article.css-8atqhb").each(function(i, element) {
+    $("article.css-8atqhb").each(function(i, element) {
 
-      const results = [];
-      
-      const title = $(element).find("h2").text();
-      const summary = $(element).find("p").text() || $(element).find("li").text();
-      const link = $(element).find("a").attr("href");
+        const results = [];
+        
+        const title = $(element).find("h2").text();
+        const summary = $(element).find("p").text() || $(element).find("li").text();
+        const link = $(element).find("a").attr("href");
 
-      // Save these results in an object that we'll push into the results array we defined earlier
-      results.push({
-        title: title,  
-        summary: summary,
-        link: link
-      });
+        // Save these results in an object that we'll push into the results array we defined earlier
+        db.Article.find({link: link})
+            .then(found => {
+                if (found.length === 0) {
+                results.push({
+                    title: title,  
+                    summary: summary,
+                    link: link
+                });
 
-      // Create a new Article using the `result` object built from scraping
-      db.Article.create(results)
-        .then(function(dbArticle) {
-          // View the added result in the console
-          console.log(dbArticle);
-        })
-        .catch(function(err) {
-          // If an error occurred, log it
-          console.log(err);
-        });
+                db.Article.create(results)
+                    .then(function(dbArticle) {
+                    // View the added result in the console
+                    console.log(dbArticle);
+                    })
+                    .catch(function(err) {
+                    // If an error occurred, log it
+                    console.log(err);
+                });
+            } else {
+                console.log("Article is already in the database");
+                console.log(found);
+            }
+        })          
     });
 
     // Send a message to the client

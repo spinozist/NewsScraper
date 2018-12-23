@@ -43,7 +43,7 @@ $(document).on("click", "button.noteButton", function() {
     .then(function(data) {
       console.log(data);
       // The title of the article
-      $("#notes").append("<h6>Note for:</h6><h5><em>" + data.title + "</em></h5>");
+      $("#notes").append("<h6 id='note-for'>Note for:</h6><h5 id='note-article'><em>" + data.title + "</em></h5>");
       // An input to enter a new title
       $("#notes").append("<input id='titleinput' name='title' placeholder='Title' >");
       // A textarea to add a new note body
