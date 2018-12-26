@@ -1,8 +1,7 @@
-var express = require("express");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+const express = require("express");
+const logger = require("morgan");
+const mongoose = require("mongoose");
 mongoose.set ("useCreateIndex", true);
-
 
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
@@ -38,12 +37,16 @@ mongoose.connect(dbURI, { useNewUrlParser: true });
 
 // Routes
 
+app.get("/", (req, res) => {
+    res.sendFile("index");
+})
+
 // A GET route for scraping the echoJS website
-app.get("/scrape", function(req, res) {
+app.get("/scrape", (req, res) => {
   // First, we grab the body of the html with axios
   axios.get("http://www.nytimes.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
-    var $ = cheerio.load(response.data);
+    const $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
     $("article.css-8atqhb").each(function(i, element) {
@@ -65,11 +68,11 @@ app.get("/scrape", function(req, res) {
                 });
 
                 db.Article.create(results)
-                    .then(function(dbArticle) {
+                    .then(dbArticle => {
                     // View the added result in the console
                     console.log(dbArticle);
                     })
-                    .catch(function(err) {
+                    .catch(err => {
                     // If an error occurred, log it
                     console.log(err);
                 });
@@ -86,7 +89,7 @@ app.get("/scrape", function(req, res) {
 });
 
 // Route for getting all Articles from the db
-app.get("/articles/", function(req, res) {
+app.get("/articles/", (req, res) => {
   db.Article.find({}).sort({timestamp: -1})
   .populate("note")
   .then(found => {
@@ -99,7 +102,7 @@ app.get("/articles/", function(req, res) {
 });
 
 // Route for grabbing a specific Article by id, populate it with it's note
-app.get("/articles/:id", function(req, res) {
+app.get("/articles/:id", (req, res) => {
   // TODO
   // ====
   // Finish the route so it finds one article using the req.params.id,
@@ -139,6 +142,6 @@ app.post("/articles/:id", function(req, res) {
 });
 
 // Start the server
-app.listen(PORT, function() {
+app.listen(PORT, () => {
   console.log("App running on port " + PORT + "!");
 });

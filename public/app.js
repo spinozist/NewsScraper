@@ -75,6 +75,7 @@ $(document).on("click", "button.noteButton", function () {
             // A textarea to add a new note body
             $(`#notes`).append(`<textarea id='bodyinput' name='body' placeholder='Note'></textarea>`);
             // A button to submit a new note, with the id of the article saved to it
+            $(`#notes`).append(`<button id="cancelNote">Cancel</button>`)
             $(`#notes`).append(`<button data-id="${data._id}" id='savenote'>Save Note</button>`);
 
 
@@ -155,4 +156,9 @@ $(document).on("click", "#savenote", function () {
     // Also, remove the values entered in the input and textarea for note entry
     // $("#titleinput").val("");
     // $("#bodyinput").val("");
+});
+
+$(document).on("click", "#cancelNote", () => {
+    console.log("Cancel button clicked.")
+    $("#notes").empty();
 });
