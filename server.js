@@ -12,7 +12,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-let dbURI = process.env.MongoURI;
+const dbURI = process.env.MongoURI;
 
 // Require all models
 const db = require("./models");
