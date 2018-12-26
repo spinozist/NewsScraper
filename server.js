@@ -30,7 +30,7 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static(`${__dirname}/public/index.html`));
 
 // Connect to the Mongo DB
 mongoose.connect(dbURI, { useNewUrlParser: true });
