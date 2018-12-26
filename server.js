@@ -36,8 +36,9 @@ app.use(express.json());
 mongoose.connect(dbURI, { useNewUrlParser: true });
 
 // Routes
-
-res.sendFile('public/index.html' , { root : __dirname});
+app.get("/", (req,res) => {
+    res.sendFile('public/index.html' , { root : __dirname});
+});
 // A GET route for scraping the echoJS website
 app.get("/scrape", (req, res) => {
   // First, we grab the body of the html with axios
