@@ -30,15 +30,15 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
-// app.use(express.static(`${__dirname}/public/index.html`));
+app.use(express.static(`public`));
 
 // Connect to the Mongo DB
-mongoose.connect(dbURI);
+mongoose.connect(dbURI, { userNewUrlParser: true});
 
 // Routes
-app.get("/", (req,res) => {
-    res.sendFile('public/index.html' , { root : __dirname});
-});
+// app.get("/", (req,res) => {
+//     res.sendFile('public/index.html' , { root : __dirname});
+// });
 // A GET route for scraping the echoJS website
 app.get("/scrape", (req, res) => {
   // First, we grab the body of the html with axios
