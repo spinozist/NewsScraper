@@ -33,7 +33,7 @@ app.use(express.json());
 // app.use(express.static(`${__dirname}/public/index.html`));
 
 // Connect to the Mongo DB
-mongoose.connect(dbURI, { useNewUrlParser: true });
+mongoose.connect(dbURI);
 
 // Routes
 app.get("/", (req,res) => {
