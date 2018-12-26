@@ -3,19 +3,25 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 mongoose.set ("useCreateIndex", true);
 
+
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
-var axios = require("axios");
-var cheerio = require("cheerio");
+const axios = require("axios");
+const cheerio = require("cheerio");
+const dotenv = require("dotenv");
+
+dotenv.config();
+
+let dbURI = process.env.MongoURI;
 
 // Require all models
-var db = require("./models");
+const db = require("./models");
 
-var PORT = 3000;
+const PORT = 3000;
 
 // Initialize Express
-var app = express();
+const app = express();
 
 // Configure middleware
 
@@ -28,7 +34,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/nytimesscrape", { useNewUrlParser: true });
+mongoose.connect(dbURI, { useNewUrlParser: true });
 
 // Routes
 
@@ -82,6 +88,7 @@ app.get("/scrape", function(req, res) {
 // Route for getting all Articles from the db
 app.get("/articles/", function(req, res) {
   db.Article.find({}).sort({timestamp: -1})
+  .populate("note")
   .then(found => {
     res.json(found);
   })
