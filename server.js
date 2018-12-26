@@ -30,16 +30,13 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
-app.use(express.static("public"));
+app.use(express.static(`${__dirname}/public`));
 
 // Connect to the Mongo DB
 mongoose.connect(dbURI, { useNewUrlParser: true });
 
 // Routes
 
-app.get("/", (req, res) => {
-    res.sendFile(`${__dirname}/public/index.html`);
-})
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", (req, res) => {
