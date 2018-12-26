@@ -38,7 +38,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true });
 // Routes
 
 app.get("/", (req, res) => {
-    res.sendFile("./public/index");
+    res.sendFile("./public/index.html");
 })
 
 // A GET route for scraping the echoJS website
