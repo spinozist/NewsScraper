@@ -1,3 +1,7 @@
+
+const dotenv = require("dotenv");
+dotenv.config();
+const dbURI = process.env.MongoURI;
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -8,11 +12,7 @@ const path = require("path");
 // It works on the client and on the server
 const axios = require("axios");
 const cheerio = require("cheerio");
-const dotenv = require("dotenv");
 
-dotenv.config();
-
-const dbURI = process.env.MongoURI;
 
 // Require all models
 const db = require("./models");
