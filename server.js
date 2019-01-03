@@ -13,6 +13,8 @@ const path = require("path");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
+mongoose.connect(dbURI, { userNewUrlParser: true});
+
 
 // Require all models
 const db = require("./models");
@@ -33,7 +35,6 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname + "/public")));
 
 // Connect to the Mongo DB
-mongoose.connect(dbURI, { userNewUrlParser: true});
 
 // Routes
 // app.get("/", (req,res) => {
