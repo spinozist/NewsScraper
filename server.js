@@ -32,7 +32,7 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
-app.use(express.static(path.join(__dirname + "/public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Connect to the Mongo DB
 
