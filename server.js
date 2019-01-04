@@ -1,7 +1,7 @@
 
 const dotenv = require("dotenv");
 dotenv.config();
-let dbURI = process.env.MongoURI;
+let dbURI = process.env.MONGODB_URI;
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
